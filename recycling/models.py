@@ -8,13 +8,3 @@ class RecyclableItem(models.Model):
 
     def __str__(self):
         return self.name
-
-# 무단 투기 신고 모델
-class IllegalDumpingReport(models.Model):
-    location = models.CharField(max_length=255)
-    image = models.ImageField(upload_to='dumping_reports/')
-    reported_at = models.DateTimeField(auto_now=True)
-
-    def __str__(self):
-        return f"Report at {self.location} on {self.reported_at}"
-
