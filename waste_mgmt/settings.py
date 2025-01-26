@@ -16,15 +16,27 @@ INSTALLED_APPS = [
     'ocr',         # OCR 기능 앱
     'rest_framework',
     'channels',    # Django Channels
+    # 추가 기능들
+    'notifications',
+    # GeoDjango 활성화 (핫스팟 분석 기능에 필요)
+    'django.contrib.gis',
+
 ]
 
 ASGI_APPLICATION = 'waste_mgmt.asgi.application'
 
+
 CHANNEL_LAYERS = {
-    'default': {
-        'BACKEND': 'channels.layers.InMemoryChannelLayer',
+    "default": {
+        "BACKEND": "channels_redis.core.RedisChannelLayer",
+        "CONFIG": {
+            "hosts": [("127.0.0.1", 6379)],
+        },
     },
 }
+
+import os
+os.environ['GDAL_LIBRARY_PATH'] = '/opt/anaconda3/envs/waste_mgmt/lib/libgdal.dylib'  # (경로는 실제 GDAL 경로로 수정)
 
 
 MIDDLEWARE = [
