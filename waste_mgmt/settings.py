@@ -3,6 +3,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-bzx(xr$k+cix#3xpcegv8f$g*k&g8w#o&c#+mcilyjspb%u3=g'
 DEBUG = True
 
+CORS_ALLOWED_ORIGINS = [
+    'http://localhost:3000',  # React 개발 서버
+],
+
 ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
@@ -18,6 +22,7 @@ INSTALLED_APPS = [
     'channels',    # Django Channels
     # 추가 기능들
     'notifications',
+    'corsheaders',
     # GeoDjango 활성화 (핫스팟 분석 기능에 필요)
     'django.contrib.gis',
 
@@ -47,6 +52,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
 ]
 
 ROOT_URLCONF = 'waste_mgmt.urls'
@@ -105,3 +111,4 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
